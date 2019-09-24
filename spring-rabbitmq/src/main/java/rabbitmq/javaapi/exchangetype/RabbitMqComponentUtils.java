@@ -19,6 +19,12 @@ public class RabbitMqComponentUtils {
         return channel;
     }
 
+    /**
+     * 显式地关闭Channel，但这不是必须的，在Connection关闭的时候，
+     * Channel 也会自动关闭。
+     * @param channel
+     * @throws Exception
+     */
     public static void close(Channel channel) throws Exception{
         channel.close();
         channel.getConnection().close();
