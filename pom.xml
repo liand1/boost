@@ -12,6 +12,7 @@
         <module>spring-aop</module>
         <module>eureka-server</module>
         <module>spring-rabbitmq</module>
+        <module>spring-ioc</module>
     </modules>
 
     <parent>
@@ -40,7 +41,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
