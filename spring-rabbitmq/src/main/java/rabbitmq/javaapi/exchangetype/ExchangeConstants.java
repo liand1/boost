@@ -3,9 +3,11 @@ package rabbitmq.javaapi.exchangetype;
 public class ExchangeConstants {
 
     public static final String QUEUE_NAME = "queue_demo";
+    public static final String QUEUE_DLX = "queue_demo";
     public static final String EXCHANGE_DIRECT = "direct_exchange";
     public static final String EXCHANGE_FANOUT = "fanout_exchange";
     public static final String EXCHANGE_TOPIC = "topic_exchange";
+    public static final String EXCHANGE_DLX = "dlx_exchange";
     public static final String ROUTING_KEY1 = "direct_routing_key1";
     public static final String ROUTING_KEY2 = "direct_routing_key2";
     public static final String TOPIC_ROUTING_KEY1 = "com.rabbitmq.client";
