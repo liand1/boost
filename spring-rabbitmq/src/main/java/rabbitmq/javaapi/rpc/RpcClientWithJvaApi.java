@@ -2,7 +2,7 @@ package rabbitmq.javaapi.rpc;
 
 import com.rabbitmq.client.*;
 import org.springframework.amqp.utils.SerializationUtils;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

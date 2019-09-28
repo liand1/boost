@@ -3,7 +3,7 @@ package rabbitmq.javaapi.rpc;
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.utils.SerializationUtils;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
 import java.io.IOException;
 

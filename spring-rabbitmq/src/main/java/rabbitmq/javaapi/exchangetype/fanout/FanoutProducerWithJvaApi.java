@@ -2,9 +2,9 @@ package rabbitmq.javaapi.exchangetype.fanout;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.EXCHANGE_FANOUT;
+import static rabbitmq.javaapi.util.ExchangeConstants.EXCHANGE_FANOUT;
 
 public class FanoutProducerWithJvaApi {
 

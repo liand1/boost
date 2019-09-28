@@ -2,11 +2,11 @@ package rabbitmq.javaapi.exchangetype.direct;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
 import java.io.IOException;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.*;
+import static rabbitmq.javaapi.util.ExchangeConstants.*;
 
 @Slf4j
 public class DirectConsumerWithJvaApi {

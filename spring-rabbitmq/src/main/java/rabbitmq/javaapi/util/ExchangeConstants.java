@@ -1,4 +1,4 @@
-package rabbitmq.javaapi.exchangetype;
+package rabbitmq.javaapi.util;
 
 public class ExchangeConstants {
 
@@ -14,6 +14,7 @@ public class ExchangeConstants {
     public static final String TOPIC_ROUTING_KEY2 = "com.hidden.client";
     public static final String DLX_ROUTING_KEY = "dlx.routing";
     public static final String IP_ADDRESS = "localhost";
+//    public static final String IP_ADDRESS = "192.168.96.129";
     public static final String USERNAME = "admin";
     public static final String PASSWORD = "admin";
     public static final int PORT = 5672;//RabbitMQ 服务端默认端口号为 5672

@@ -4,12 +4,12 @@ package rabbitmq.javaapi.dlx;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.MessageProperties;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.*;
+import static rabbitmq.javaapi.util.ExchangeConstants.*;
 
 /**
  * Dead-Letter-Exchange ,可以称之为死信交换器,也有人称之为死信邮箱。当

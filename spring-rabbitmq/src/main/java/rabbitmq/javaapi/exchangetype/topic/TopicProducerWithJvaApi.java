@@ -2,9 +2,9 @@ package rabbitmq.javaapi.exchangetype.topic;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.*;
+import static rabbitmq.javaapi.util.ExchangeConstants.*;
 
 public class TopicProducerWithJvaApi {
 

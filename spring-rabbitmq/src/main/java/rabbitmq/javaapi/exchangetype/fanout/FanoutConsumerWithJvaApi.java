@@ -2,11 +2,11 @@ package rabbitmq.javaapi.exchangetype.fanout;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import rabbitmq.javaapi.exchangetype.RabbitMqComponentUtils;
+import rabbitmq.javaapi.util.RabbitMqComponentUtils;
 
 import java.io.IOException;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.EXCHANGE_FANOUT;
+import static rabbitmq.javaapi.util.ExchangeConstants.EXCHANGE_FANOUT;
 
 @Slf4j
 public class FanoutConsumerWithJvaApi {

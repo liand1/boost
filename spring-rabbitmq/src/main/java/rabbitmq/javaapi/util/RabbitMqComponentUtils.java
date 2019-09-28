@@ -1,4 +1,4 @@
-package rabbitmq.javaapi.exchangetype;
+package rabbitmq.javaapi.util;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -8,7 +8,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-import static rabbitmq.javaapi.exchangetype.ExchangeConstants.*;
+import static rabbitmq.javaapi.util.ExchangeConstants.*;
 
 public class RabbitMqComponentUtils {
 
