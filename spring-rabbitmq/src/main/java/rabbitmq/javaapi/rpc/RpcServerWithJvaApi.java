@@ -27,6 +27,8 @@ public class RpcServerWithJvaApi {
             // 5.声明队列
             channel.queueDeclare(RPC_QUEUE_NAME, true, false, false, null);
             // 6.设置最大服务转发数量一次一个
+            // channel.basicQos 方法允许限制信道上的消费者所能保持的最大
+            //未确认消息的数量。
             channel.basicQos(1);
             System.out.println("waiting RPC requests.............");
             // 7.消费请求信息

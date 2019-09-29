@@ -13,6 +13,7 @@
         <module>eureka-server</module>
         <module>spring-rabbitmq</module>
         <module>spring-ioc</module>
+        <module>core-java</module>
     </modules>
 
     <parent>
