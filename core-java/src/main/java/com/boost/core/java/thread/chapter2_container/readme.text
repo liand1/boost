@@ -1,0 +1,25 @@
+总结：
+1：对于map/set的选择使用
+HashMap
+TreeMap
+LinkedHashMap
+
+Hashtable
+Collections.sychronizedXXX 并发不高的情况下
+
+ConcurrentHashMap
+ConcurrentSkipListMap  并发高的情况下
+
+2：队列
+ArrayList
+LinkedList
+Collections.synchronizedXXX  并发不高的情况下
+CopyOnWriteList 性能很低  在监听器队列里面用的多
+Queue
+	CocurrentLinkedQueue //concurrentArrayQueue 内部加锁
+	BlockingQueue 阻塞式队列
+		LinkedBQ
+		ArrayBQ
+		TransferQueue  在游戏服务器接受转化消息用的多
+		SynchronusQueue
+	    DelayQueue执行定时任务
