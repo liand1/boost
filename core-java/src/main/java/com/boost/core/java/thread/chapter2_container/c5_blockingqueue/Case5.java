@@ -21,7 +21,7 @@ public class Case5 {
 
         TimeUnit.SECONDS.sleep(5);
         strs.put("aaa"); //阻塞等待消费者消费
-        //strs.add("aaa");
+        //strs.add("aaa");// 报错
         System.out.println(strs.size());
     }
 }

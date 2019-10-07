@@ -3,6 +3,7 @@ package com.boost.core.java.thread.chapter2_container.c5_blockingqueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TransferQueue;
 
 /**
  * LinkedTransferQueue
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class Case4 {
 
     public static void main(String[] args) throws InterruptedException {
-        BlockingQueue<String> strs = new LinkedTransferQueue<>();
+        TransferQueue<String> strs = new LinkedTransferQueue<>();
 
 		new Thread(() -> {
 			try {
@@ -20,14 +21,14 @@ public class Case4 {
 			}
 		}).start();
 
-//        strs.transfer("aaa");// 如果找不到消费者会阻塞
+        strs.transfer("aaa");// 如果找不到消费者会阻塞
 
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        strs.put("aaa");
+        //strs.put("aaa");// put 不会阻塞
 
 
         /*new Thread(() -> {

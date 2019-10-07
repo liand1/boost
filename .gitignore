@@ -1,0 +1,24 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+*.class
+*.jar
+*.lst
+*.original
+out
+gen
+.idea/.gitignore
+eureka-server/target/classes/
+eureka-server/target/generated-sources/
+eureka-server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+spring-aop/target/generated-sources/
+spring-aop/target/generated-test-sources/
+spring-aop/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+spring-aop/target/surefire-reports/
+spring-rabbitmq/target/
+*/target/
+
