@@ -2,6 +2,13 @@ package com.boost.core.java.thread.chapter1_threadsafety.join;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * join方法的意思是将调用该发放的线程合并到执行代码块的线程里面去
+ * 举个例子，下面的代码中我们可以知道有两个线程，main线程和t线程
+ * 当在main里面调用t.join()后，将t线程合并到main线程，也就是将
+ * 两个线程合并成一个线程，也就不会出现并行运行的状态，所以会等到
+ * t线程里面的代码执行完毕之后再去执行t.join()后面的代码
+ */
 public class Case1 {
 
     public static void main(String[] args) {

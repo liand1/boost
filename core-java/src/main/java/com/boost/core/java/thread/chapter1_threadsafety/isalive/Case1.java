@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 判断当前的线程是否处于活动状态, 活动状态代码已经启动并且尚未终止，
- * 线程处于正在运行或准备运行的状态，就认为是活动状态
+ * 线程处于正在运行或准备运行(包括阻塞)的状态，就认为是活动状态
  */
 public class Case1 extends Thread{
 
