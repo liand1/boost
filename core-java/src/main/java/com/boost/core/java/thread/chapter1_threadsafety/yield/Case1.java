@@ -1,7 +1,8 @@
 package com.boost.core.java.thread.chapter1_threadsafety.yield;
 
 /**
- * 让出cpu一小会儿，给其它线程执行的机会
+ * 让出cpu一小会儿，给其它线程执行的机会,让出的时间不确定，有可能刚刚让出来，马上又获得CPU时间片
+ *
  */
 public class Case1 extends Thread {
 
