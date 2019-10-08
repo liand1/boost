@@ -12,5 +12,12 @@
         将返回一个false。
         
     3.isInterrupted()
-        作用是只测试此线程是否被中断 ，不清除中断状态。       
+        作用是只测试此线程是否被中断 ，不清除中断状态。    
         
+           
+case1:调用interrupt方法不是真正的停止线程  
+case2:判断线程是否是停止状态 interrupted  
+case3:this.isInterrupted()测试线程Thread对象是否已经是中断状态，但不清除标志  
+case4:要解决完全退出run方法的情况，这里我们采用了抛出InterruptedException  
+case5:睡眠中中断线程  
+case6:先中断线程，然后进入到sleep        

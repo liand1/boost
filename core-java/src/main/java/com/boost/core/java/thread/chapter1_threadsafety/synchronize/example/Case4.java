@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 一个同步方法调用另外一个同步方法
- * 一个线程已经拥有某个对象的锁，在此申请的时候仍然会得到该对象的锁，也就是说synchronied获得的锁是可重入的
+ * 一个线程已经拥有某个对象的锁，再次申请的时候仍然会得到该对象的锁，也就是说synchronied获得的锁是可重入的
  */
 public class Case4 {
 
