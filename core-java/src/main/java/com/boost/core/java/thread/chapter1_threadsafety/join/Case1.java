@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
  * 当在main里面调用t.join()后，将t线程合并到main线程，也就是将
  * 两个线程合并成一个线程，也就不会出现并行运行的状态，所以会等到
  * t线程里面的代码执行完毕之后再去执行t.join()后面的代码
+ *
+ * join 和synchronized的区别是,join在内部使用wait()方法进行等待，而synchronized关键字使用的是“对象监视器”原理作为同步。
  */
 public class Case1 {
 
