@@ -17,7 +17,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 使用ReentrantLock还可以调用lockInterruptibly方法，可以对线程interrupt方法做出响应，
  * 在一个线程等待锁的过程中，可以被打断
  *
- * ReentrantLock还可以指定为公平锁(谁等的时间长，让谁得到这把锁)
+ * ReentrantLock还可以指定为公平锁(谁等的时间长，让谁得到这把锁), 先到先得（顾名思义，非公平锁的意思就是先来的不一定先
+ * 得到锁，这个方式可能造成某些线程一直拿不到锁,结果也就是不公平的了）
  * synchronized不是非公平锁，但是它的效率比较高，因为它不会去计算谁的等待时间长，都是竞争式的，谁得到这把锁完全
  * 取决于线程调度器
  *

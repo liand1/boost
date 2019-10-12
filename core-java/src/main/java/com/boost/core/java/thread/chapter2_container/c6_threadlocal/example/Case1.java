@@ -1,4 +1,4 @@
-package com.boost.core.java.thread.chapter2_container.threadlocal.example;
+package com.boost.core.java.thread.chapter2_container.c6_threadlocal.example;
 
 import java.util.concurrent.TimeUnit;
 
