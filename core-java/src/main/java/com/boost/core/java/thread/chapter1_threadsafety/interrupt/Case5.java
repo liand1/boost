@@ -5,6 +5,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * 睡眠中中断线程
  * 抛出异常，会被清除掉中断状态
+ *
+ * 在正常情况下该线程需要等20秒后才会
+ * 被唤 ，但是本例通过调c.interrupt()方法打断了该线程的休眠，该线程会
+ * 在调用sleep()处抛出InterruptedException异常后返回
  */
 public class Case5 extends Thread {
 
@@ -27,6 +31,7 @@ public class Case5 extends Thread {
             c.start();
             TimeUnit.SECONDS.sleep(1);
             c.interrupt();
+            c.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
