@@ -1,0 +1,26 @@
+  内部机制: Thread类中有一个threadLocals和inheritableThreadLocals都是ThreadLocalMap类型的变量，而ThreadLocalMap是一个定制化的
+HashMap，默认每个线程中这个两个变量都为null，只有当前线程第一次调用了ThreadLocal的set或者get方法时候才会进行创建。其实
+每个线程的本地变量不是存放到ThreadLocal实例里面的，而是存放到调用线程的threadLocals变量里面。也就是说ThreadLocal类型的
+本地变量是存放到具体的线程内存空间的。ThreadLocal就是一个工具壳，它通过set方法把value值放入调用线程的threadLocals里面存
+放起来，当调用线程调用它的get方法时候再从当前线程的threadLocals变量里面拿出来使用。如果调用线程一直不终止那么这个本地变
+量会一直存放到调用线程的threadLocals变量里面，所以当不需要使用本地变量时候可以通过调用ThreadLocal变量的remove方法，从当
+前线程的threadLocals里面删除该本地变量。另外Thread里面的threadLocals为何设计为map结构那？很明显是因为每个线程里面可以关
+联多个ThreadLocal变量
+  可以分析一下ThreadLocal的set,get,remove方法的实现逻辑
+  
+  >总结：
+  每个线程内部都有一个名字为threadLocals的成员变量，该变量类型为HashMap，其中key为我们定义的ThreadLocal变量的this引用，
+  value则为我们set时候的值，每个线程的本地变量是存到到线程自己的内存变量threadLocals里面的，如果当前线程一直不消失那么
+  这些本地变量会一直存到，所以可能会造成内存溢出，所以使用完毕后要记得调用ThreadLocal的remove方法删除对应线程的
+  threadLocals中的本地变量。*ThreadLocalRandom*就是借鉴ThreadLocal的思想实现的。
+  
+  *InheritableThreadLocal的内部机制在case4*
+  
+  
+
+case2:ThreadLocal使用和解读  
+case3:ThreadLocal隔离性  
+case4:InheritableThreadLocal可以在子线程中继承父线程的值  
+
+
+
