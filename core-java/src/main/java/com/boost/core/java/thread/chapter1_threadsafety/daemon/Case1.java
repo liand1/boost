@@ -11,6 +11,10 @@ import java.util.concurrent.TimeUnit;
  * Daemon Thread存在了，虚拟机也就退出了。 因为没有了被守护者，Daemon也就没有工作可做了，也就没有继续运行程序的必
  * 要了。
  * 守护线程里面的finally也不会执行。
+ *
+ * 总结 : 如果你希望在主线程结束后 JVM 进程马上结束,那么在创建线程时可以将
+ * 其设置为守护线程,如果你希望在主线程结束后子线程继续工作,等子线程结束后再让
+ * JVM 进程结束,那么就将子线程设置为用户线程。
  */
 public class Case1 extends Thread {
 
@@ -31,6 +35,11 @@ public class Case1 extends Thread {
         }
     }
 
+    /**
+     * main线程运行结束后, JVM会自动启动一个叫作 DestroyJavaVM 的线程, 该线程会
+     * 等待所有用户线程结束后终止JVM进程
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             Case1 thread = new Case1();
