@@ -1,4 +1,4 @@
-package com.boost.core.java.thread.chapter1_threadsafety.simpledateformat;
+package com.boost.core.java.thread.chapter1_threadsafety.unsafeobject.simpledateformat;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
