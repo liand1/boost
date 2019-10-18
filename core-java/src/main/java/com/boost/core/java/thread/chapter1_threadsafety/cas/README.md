@@ -5,7 +5,7 @@
  的非阻塞原子性操作，它通过硬件保证了比较—更新操作的原子性。JDK里面的Unsafe类提供了一系列的compareAndSwap*方法，下面
  以compareAndSwapLong方法为例进行简单介绍。
 + boolean compareAndSwapLong（Object obj, long valueOffset, long expect, long update）方法：其中compareAndSwap的意思是比
-较并交换。CAS有四个操作数，分别为：对象内存位置、对象中的变量的偏移量(我们可以简单地把valueOffset理解为变量的内存地址)、
+较并交换。CAS有四个操作数，分别为：对象内存位置、对象中的变量的偏移量(我们可以简单地把valueOffset理解为变量的内存地址[内存偏移百度百科](https://baike.baidu.com/item/%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80/3108819?fr=aladdin))、
 变量预期值和新的值。其操作含义是，如果对象obj中内存偏移量为valueOffset的变量值为expect，则使用新的值update替换旧的值
 expect。这是处理器提供的一个原子性指令。
 >关于CAS操作有个经典的ABA问题，具体如下：假如线程I使用CAS修改初始值为A的变量X，那么线程I会首先去获取当前变量X的值
