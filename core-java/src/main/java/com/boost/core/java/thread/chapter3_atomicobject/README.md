@@ -6,6 +6,9 @@
 JUC并发包中包含有AtomicInteger、AtomicLong和AtomicBoolean等原子性操作类，它们的原理类似，本章讲解AtomicLong类。
 AtomicLong原子性递增或者递减类，其内部使用Unsafe来实现  
 
+case2: JMH分析AtomicLong&LongAdder,进一步了解JMH插件去[chapter5_advance](https://github.com/liand1/boost/tree/master/core-java/src/main/java/com/boost/core/java/thread/chapter5_advance)
+case3-case4: 对比两者之间的性能
+
 ### AtomicLong
 + > 高并发情况下AtomicLong还会存在性能问题,通过CAS操作去修改原子变量，在高并发的情况下只会有一个线程CAS操作成功，其它的
   线程只能自旋重新尝试，会占用CPU资源。
@@ -181,6 +184,3 @@ AtomicLong原子性递增或者递减类，其内部使用Unsafe来实现
    
 ### LongAccumulator
 
-
-case2: JMH分析AtomicLong&LongAdder（进一步了解JMH插件去(chapter5_advance)[https://github.com/liand1/boost/tree/master/core-java/src/main/java/com/boost/core/java/thread/chapter5_advance]）
-case3-case4: 对比两者之间的性能
