@@ -6,7 +6,7 @@
 JUC并发包中包含有AtomicInteger、AtomicLong和AtomicBoolean等原子性操作类，它们的原理类似，本章讲解AtomicLong类。
 AtomicLong原子性递增或者递减类，其内部使用Unsafe来实现  
 
-case2: JMH分析AtomicLong&LongAdder,进一步了解JMH插件去[chapter5_advance](https://github.com/liand1/boost/tree/master/core-java/src/main/java/com/boost/core/java/thread/chapter5_advance)
+case2: JMH分析AtomicLong&LongAdder,进一步了解JMH插件去[chapter5_advance](https://github.com/liand1/boost/tree/master/core-java/src/main/java/com/boost/core/java/thread/chapter5_advance)  
 case3-case4: 对比两者之间的性能
 
 ### AtomicLong
@@ -183,4 +183,6 @@ case3-case4: 对比两者之间的性能
                
    
 ### LongAccumulator
+> LongAccumulator相比于LongAdder，可以为累加器提供非0的初始值，而LongAdder只能提供默认的0值。另外，LongAccumulator还可以
+指定累加规则，比如累加或者相乘，只需要在构造LongAccumulator时，传入自定义的双目运算器即可，后者则内置累加规则。
 
