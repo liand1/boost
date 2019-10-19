@@ -1,4 +1,4 @@
-package com.boost.core.java.thread.chapter3_atomicobject.atomiclong;
+package com.boost.core.java.thread.chapter3_atomicobject;
 
 import java.util.concurrent.atomic.LongAdder;
 

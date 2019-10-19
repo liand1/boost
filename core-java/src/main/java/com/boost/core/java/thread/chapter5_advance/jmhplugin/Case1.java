@@ -1,6 +1,6 @@
 package com.boost.core.java.thread.chapter5_advance.jmhplugin;
 
-import com.boost.core.java.thread.chapter3_atomicobject.atomiclong.Case2;
+import com.boost.core.java.thread.chapter3_atomicobject.Case2;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
