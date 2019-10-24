@@ -2,10 +2,9 @@ package main;
 
 public class Application {
     public static void main(String[] args) {
-        trimStr("LongAdder类继承自 Striped64类，在 Striped64 内部维护着三个变量。 LongAdder 的真实值其实是 base 的值与 Cell数组里\n" +
-                "      面所有 Cell元素中的 value值的累加， base是个基础值，默认为 0。 cellsBusy用来实现自旋锁，状态值只有 0和1当创建 \n" +
-                "      Cell元素， 扩容 Cell 数组或者初始化 Cel 数组时，使用 CAS 操作该变量来保证同时只有一个线程可以进行其中之一的操作 。\n" +
-                "     ");
+        trimStr("，行为参数化是一个很有用的模式，它能够轻松地适应不断变化的需求。这\n" +
+                "种模式可以把一个行为（一段代码）封装起来，并通过传递和使用创建的行为（例如对Apple的\n" +
+                "不同谓词）将方法的行为参数化。前面提到过，这种做法类似于策略设计模式");
 
     }
 
