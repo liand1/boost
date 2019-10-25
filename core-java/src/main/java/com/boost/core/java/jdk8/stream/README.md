@@ -1,3 +1,15 @@
+case1: 
+case2: 流只能消费一次
+case3: 外部迭代和内部迭代， 中间操作与终端操作
+case4: 使用流, filter/distinct/limit/skip
+case5: 使用流, 映射， 流的扁平化(flatMap)
+case6: 查找和匹配 短路求值
+case7: 计算reduce
+case8: 应用场景
+case9: 数值流, 数值范围
+case10: 构建流
+
+
 和CollectionAPI相比，StreamAPI处理数据的方式非常不同.用集合的话，你得
 自己去做迭代的过程.你得用for-each循环一个个去迭代元素，然后再处理元素.我们把这种
 数据迭代的方法称为外部迭代.相反，有了StreamAPI，你根本用不着操心循环的事情.数据处
