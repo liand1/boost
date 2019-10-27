@@ -7,4 +7,5 @@
   计算时间。
 
 case1: minBy/summingInt/joining
-case2: groupingBy
+case2: groupingBy collectingAndThen 分组
+case3: 分区

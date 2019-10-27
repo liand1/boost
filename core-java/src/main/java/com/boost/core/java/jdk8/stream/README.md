@@ -1,13 +1,13 @@
-case1: 
-case2: 流只能消费一次
-case3: 外部迭代和内部迭代， 中间操作与终端操作
-case4: 使用流, filter/distinct/limit/skip
-case5: 使用流, 映射， 流的扁平化(flatMap)
-case6: 查找和匹配 短路求值
-case7: 计算reduce
-case8: 应用场景
-case9: 数值流, 数值范围
-case10: 构建流
+case1:   
+case2: 流只能消费一次  
+case3: 外部迭代和内部迭代， 中间操作与终端操作  
+case4: 使用流, filter/distinct/limit/skip  
+case5: 使用流, 映射， 流的扁平化(flatMap)  
+case6: 查找和匹配 短路求值  
+case7: 计算reduce  
+case8: 应用场景  
+case9: 数值流, 数值范围  
+case10: 构建流  
 
 
 和CollectionAPI相比，StreamAPI处理数据的方式非常不同.用集合的话，你得

@@ -3,9 +3,7 @@ package com.boost.core.java.jdk8.stream.collectors;
 import com.boost.core.java.jdk8.stream.entity.Dish;
 import com.boost.core.java.jdk8.stream.util.DishUtil;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
@@ -85,9 +83,32 @@ public class Case2 {
     public static void case5() {
         Map<Dish.Type, Dish> mostCaloricByType =
                 menu.stream()
-                        .collect(groupingBy(Dish::getType,// 分类函数
+                        .collect(
+                                // groupingBy收集器包裹着collectingAndThen收集器，因此分组操作得到的每个子流
+                                //都用这第二个收集器做进一步归约
+                                groupingBy(Dish::getType,
+                                // collectingAndThen收集器又包裹着第三个收集器maxBy，随后由归约收集器进行子流的归约操作，
+                                // 然后包含它的collectingAndThen收集器会对其结果应用Optional:get转换函数。
                                 collectingAndThen(
                                     maxBy(comparingInt(Dish::getCalories)),
                                 Optional::get)));
+    }
+
+    /**
+     * 对每一组Dish的卡路里求和
+     */
+    public static void case6() {
+        menu.stream().collect(groupingBy(Dish::getType, summingInt(Dish::getCalories)));
+    }
+
+    /**
+     * 每种类型的Dish，菜单中都有哪些CaloricLevel
+     */
+    public static void case7() {
+        Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType = menu.stream().collect(groupingBy(Dish::getType, mapping(dish -> {
+            if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+            else return CaloricLevel.FAT;
+        }, toCollection(HashSet::new))));
     }
 }
