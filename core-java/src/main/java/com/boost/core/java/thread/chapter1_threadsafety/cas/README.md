@@ -34,4 +34,9 @@ CAS操作大概有如下几步:
 #### 接下来看unsafe模块->Unsafe是CAS的核心类  
 
 
+#### CAS和synchronized区别
+synchronized在高并发的情况下使用，wait方法不占用cpu资源
+CAS在锁竞争不激烈的情况下使用，因为可以很轻易拿到锁，否则如果长时间拿不到锁，自旋是会耗CPU性能的
+
+
 
