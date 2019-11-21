@@ -4,9 +4,10 @@ MongoDB 是一款强大、灵活，且易于扩展的通用型数据库。它能
 
 #### docker install mongo
 ```
+docker rm $(docker ps -aq)// 先删除所有容器
 docker search mongo
 docker pull mongo
-docke run -p 27017:27017 -v $PWD/db:/data/db -d  --name mymongo mongo
+docker run -p 27017:27017 -v $PWD/db:/data/db -d  --name mymongo mongo
 docker ps 
 docker exec -it con_Id sh
 ```
