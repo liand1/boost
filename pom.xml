@@ -15,6 +15,7 @@
         <module>spring-ioc</module>
         <module>core-java</module>
         <module>spring-mongo</module>
+        <module>docker</module>
     </modules>
 
     <parent>

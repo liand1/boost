@@ -104,7 +104,7 @@ db.scores.aggregate(
 {"$group":{"_id":"$grade", "lowerScore" : {"$first":"$score"}，"highScore":{"$last":"$score"}}}
 )
 ```
-case5: $push
+case5: $push  
 case6: $addToSet[用法参考,case5同理](https://www.jianshu.com/p/a5c70cfbc9af)  
 
 #### 6.2.4 $unwind
@@ -147,7 +147,7 @@ mongoDB不允许单一的聚合操作占用过多的系统内存，如果mongo�
 
 ### 6.3 MapReduce
 聚合工具中的明星，`有时候无法使用聚合框架的查询语言来表达，这时可以使用MapReduce`。MapReduce使用js作为查询语言，因此
-它能够表达任意复杂的逻辑。然而，它非常慢，不应该用在实时的数据分析中。
+它能够表达任意复杂的逻辑。`然而，它非常慢，不应该用在实时的数据分析中`。
 
 MapReduce可以在多台服务器中并行执行。它会将一个大问题拆分为多个小问题，将各个小问题发送到不同的机器上，每台机器只负责完成
 一部分工作。所有机器都完成时，再将这些零碎的解决方案合并为一个完整的解决方案。

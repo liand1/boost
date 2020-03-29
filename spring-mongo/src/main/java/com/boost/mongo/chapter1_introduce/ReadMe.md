@@ -7,9 +7,26 @@ MongoDB 是一款强大、灵活，且易于扩展的通用型数据库。它能
 docker rm $(docker ps -aq)// 先删除所有容器
 docker search mongo
 docker pull mongo
-docker run -p 27017:27017 -v $PWD/db:/data/db -d  --name mymongo mongo
+docker run -p 27017:27017 -v $PWD/db:/data/db -d  --name mymongo mongo // -p 指定端口映射
 docker ps 
-docker exec -it con_Id sh
+docker exec -it con_Id sh  // conntect to mongo -i 以交互模式运行容器 -t 为容器分配一个伪输入终端
+```
+
+#### create account
+```
+> use admin
+> db.createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});
+Successfully added user: {
+	"user" : "admin",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+> db.auth('admin', 'admin');
+1
 ```
 
 #### 1.1 　易于使用
