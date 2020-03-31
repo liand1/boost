@@ -91,6 +91,6 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 + docker attach d0ba5dffac8d 退出容器伪终端后，重新建立伪终端连接 `attach 直接进入容器启动命令的终端，不会启动新的进程`
 + docker exec -t d0ba5dffac8d ls 进入到容器，然后执行ls命令  `是在容器中打开新的终端，并且可以启动新的进程`
 + docker cp d0ba5dffac8d:/usr/tmp.log /root把容器中的tmp.log文件拷贝到宿主机的root目录下面, 通常用来进行数据拷贝
- 
++ docker run -it -p 8888:8080 tomcat 将tomcat的端口8080映射一个对外暴露的端口8888 
                                                                                                                                                    
                                                                                                                                                              
