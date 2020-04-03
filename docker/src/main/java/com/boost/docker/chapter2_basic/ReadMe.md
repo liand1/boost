@@ -5,7 +5,7 @@
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-  "registry-mirrors": ["https://15qq3jne.mirror.aliyuncs.com"] // 阿里云个人镜像加速
+  "registry-mirrors": ["https://15qq3jne.mirror.aliyuncs.com"] // 阿里云个人镜像加速,需要改
 }
 EOF
 sudo systemctl daemon-reload

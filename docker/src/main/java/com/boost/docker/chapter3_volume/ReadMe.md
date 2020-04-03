@@ -19,6 +19,23 @@
 docker run -it -v /宿主机绝对路径:/容器内目录  镜像名 // -v为volume的缩写， 如果没有文件夹则会新建, 读写权限
 docker run -it -v /myDataVolume:/dateVolumeContainer:ro centos //ro为read only 宿主机可以进行写操作，但是容器内不能进行写操作
 ```
++ mysql
+```
+docker run -it -p 8888:3306 --name mysql
+-v /depu/mysql/conf:/etc/mysql/conf.d
+-v /depu/mysql/logs:/logs
+-v /depu/mysql/data:/var/lib/mysql
+-e MYSQL_ROOT_PASSWORD=root
+-d mysql:5.6
+```
++ redis
+```
+docker run -it -p 6379:6379 --name redis
+-v /depu/myredis/data:/data
+-v /depu/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+-d redis:3.2 redis-server /usr/local/etc/redis/redis.conf
+--appendonly yes
+```
 #####3.1.2.3 DockerFile添加
 1 depu@ubuntu:~$ cd /  
 2 depu@ubuntu:/$ sudo mkdir /mydocker  
@@ -62,3 +79,38 @@ bin		      dev   lib		media  proc  sbin  tmp
 dataVolumeContainer1  etc   lib64	mnt    root  srv   usr
 dataVolumeContainer2  home  lost+found	opt    run   sys   var
 ```
+
+###3.2 volumes-from容器间传递共享
+以下操作说明，数据卷的生命周期会一直持续到没有容器使用它为止
+```
+depu@ubuntu:~$ docker run -it --name dc01 depu/centos //创建一个容器 命名为dc01
+[root@ef7b6f120c04 /]# cd dataVolumeContainer2
+[root@ef7b6f120c04 dataVolumeContainer2]# touch dc01_add.txt //给容器dc01创建一个文件dc01_add.txt
+
+depu@ubuntu:~$ docker run -it --name dc02 --volumes-from dc01 depu/centos //创建一个容器 命名为dc02 通过--volumes-from共享dc01的数据卷 
+[root@05b45691aa1f /]# cd dataVolumeContainer2
+[root@05b45691aa1f dataVolumeContainer2]# ls // 查看文件夹，发现能看到dc01创建的文件
+dc01_add.txt
+[root@05b45691aa1f dataVolumeContainer2]# touch dc02_add.txt //给容器dc02创建一个文件dc02_add.txt
+
+depu@ubuntu:~$ docker run -it --name dc03 --volumes-from dc01 depu/centos //创建一个容器 命名为dc03 通过--volumes-from共享dc01的数据卷
+[root@b54235b64cf1 /]# cd dataVolumeContainer2
+[root@b54235b64cf1 dataVolumeContainer2]# ls // 查看文件夹，发现能看到dc01和dc02创建的文件
+dc01_add.txt  dc02_add.txt
+[root@b54235b64cf1 dataVolumeContainer2]# touch dc03_add.txt
+[root@b54235b64cf1 dataVolumeContainer2]# depu@ubuntu:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+b54235b64cf1        depu/centos         "/bin/sh -c /bin/bash"   27 seconds ago       Up 25 seconds                           dc03
+05b45691aa1f        depu/centos         "/bin/sh -c /bin/bash"   About a minute ago   Up About a minute                       dc02
+ef7b6f120c04        depu/centos         "/bin/sh -c /bin/bash"   5 minutes ago        Up 5 minutes                            dc01
+depu@ubuntu:~$ docker attach dc01 //重新打开dc01的交互终端
+[root@ef7b6f120c04 dataVolumeContainer2]# ls // 查看文件夹，发现能看到dc01和dc02， dc03创建的文件
+dc01_add.txt  dc02_add.txt  dc03_add.txt 
+
+删除同理，删除到只剩一个容器仍然能查看,包括删除dc01
+^Pdepu@ubuntu:~$ docker rm -f dc01 //强制删除dc01容器
+depu@ubuntu:~$ docker attach dc02  //打开dc02的伪终端
+[root@05b45691aa1f dataVolumeContainer2]# ls  // 查看发现还能查看到所有的数据                                                     
+dc01_add.txt  dc02_add.txt  dc03_add.txt
+```
+
