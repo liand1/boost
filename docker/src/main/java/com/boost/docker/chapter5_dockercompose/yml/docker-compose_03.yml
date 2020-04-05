@@ -1,0 +1,19 @@
+#微服务编排， 前提是需要构建Dockerfile文件的时候，给每个Dockerfile做出如下配置，如果是要构建eureka服务
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://eureka:8761/eureka/ 地址中的eureka就是服务名称, 和第8行保持一致
+version: '3'
+services:
+  eureka: #docker服务名，该服务在容器中的hostname
+    image: eureka
+    ports:
+      - "8761:8761"
+  user:
+    image: user
+    ports:
+      - "8000:8000"
+  order:
+    image: order
+    ports:
+      - "8010:8010"

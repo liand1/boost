@@ -1,0 +1,23 @@
+#编排高可用微服务
+version: '3'
+services:
+  peer1: #docker服务名，该服务在容器中的hostname
+    image: eureka
+    ports:
+      - "8761:8761"
+    environment:
+      - spring.profiles.active=peer1
+  peer2:
+    image: eureka
+    ports:
+      - "8762:8762"
+    environment:
+      - spring.profiles.active=peer2
+  user:
+    image: user
+    ports:
+      - "8000:8000"
+  order:
+    image: order
+    ports:
+      - "8010:8010"

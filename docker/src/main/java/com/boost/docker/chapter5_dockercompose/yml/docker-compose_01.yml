@@ -1,6 +1,7 @@
 version: '3'
 services:
-  nginx: #容器的名称，自定义
+  nginx: #容器的名称，自定义,
+    #build: ./depu #指定Dockerfile文件目录，然后进行构建
     image: nginx #镜像，默认是lastest
     ports: #端口映射
       - 80:80
