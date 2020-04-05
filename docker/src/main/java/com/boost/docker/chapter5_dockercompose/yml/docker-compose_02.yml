@@ -1,0 +1,39 @@
+#mysql主从结构
+version: "3.3"
+services:
+  mysql-master:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - "3333:3306"
+    volumes:
+      - "/root/svr/mysql-cluster/master/my.conf:/etc/mysql/conf.d/my.cnf"
+  mysql-slave1:
+    mysql-master:
+      image: mysql:5.7
+      environment:
+        - MYSQL_ROOT_PASSWORD=123456
+      ports:
+        - "3333:3306"
+      volumes:
+        - "/root/svr/mysql-cluster/slave1/my.conf:/etc/mysql/conf.d/my.cnf"
+        - "/root/svr/mysql-cluster/slave1/:/docker-entrypoint-initdb.d"
+      depends_on:
+        - mysql-master
+      links:
+        - mysql-master
+  mysql-slave2:
+    mysql-master:
+      image: mysql:5.7
+      environment:
+        - MYSQL_ROOT_PASSWORD=123456
+      ports:
+        - "3333:3306"
+      volumes:
+        - "/root/svr/mysql-cluster/slave2/my.conf:/etc/mysql/conf.d/my.cnf"
+        - "/root/svr/mysql-cluster/slave2/:/docker-entrypoint-initdb.d"
+      depends_on:
+        - mysql-master
+      links:
+        - mysql-master

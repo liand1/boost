@@ -16,6 +16,7 @@
         <module>core-java</module>
         <module>spring-mongo</module>
         <module>docker</module>
+        <module>devtools</module>
     </modules>
 
     <parent>

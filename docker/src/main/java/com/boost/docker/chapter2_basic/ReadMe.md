@@ -1,4 +1,10 @@
-基于Ubunutu
+##本章内容
+镜像加速  
+镜像命令  
+容器命令  
+构建镜像  
+docker的网络连接  
+
 ### 2.1 镜像加速
 以下为aliyun官方文档
 ```
@@ -34,6 +40,11 @@ docker --help
 ```
 #### 2.3.2 镜像命令
 + 显示摘要信息
+docker images [optsions] [repository]
+-a,--all 默认=false 默认是显示所有镜像
+-f,filter 默认=[] 筛选
+--no-trunc 默认=false 不使用截断的形式显示数据
+-q,--quiet 默认=false 只显示镜像id
 ```
 depu@ubuntu:~$ docker images --digests
 REPOSITORY          TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
@@ -75,6 +86,8 @@ docker ps -n 5 前面运行过的5个容器
 
 ```
 + 运行一个镜像，命名为mycentOS,并且打开一个可交互的伪终端
+启动容器
+docker run IMAGE [COMMAND] [ARG...]
 ```
 docker run -it --name mycentOS 470671670cac
 depu@ubuntu:~$ docker ps
@@ -91,6 +104,75 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 + docker attach d0ba5dffac8d 退出容器伪终端后，重新建立伪终端连接 `attach 直接进入容器启动命令的终端，不会启动新的进程`
 + docker exec -t d0ba5dffac8d ls 进入到容器，然后执行ls命令  `是在容器中打开新的终端，并且可以启动新的进程`
 + docker cp d0ba5dffac8d:/usr/tmp.log /root把容器中的tmp.log文件拷贝到宿主机的root目录下面, 通常用来进行数据拷贝
-+ docker run -it -p 8888:8080 tomcat 将tomcat的端口8080映射一个对外暴露的端口8888 
++ docker run -it -p 8888:8080 tomcat 将tomcat的端口8080映射一个对外暴露的端口8888， -i(interactive) -t(tty) 
++ docker start d0ba5dffac8d 重新启动停止的容器
++ docker restart d0ba5dffac8d 重新启动容器
++ docker stop d0ba5dffac8d 停止守护式容器，stop命令会向docker容器进程发送SIGTERM信号
++ docker kill d0ba5dffac8d 快速停止某个容器，想容器进程发送SIGKILL信号
++ docker run --restart=always --name mytomcat -d tomcat 自动重启容器--restart标志，默认不会重启，`--restart=on-failure:5`代表当容器退出代码为非0  
+  的时候，才会自动重启，最多重启5次。   
                                                                                                                                                    
-                                                                                                                                                             
+ ### 2.4 构建镜像
+ 1 docker commit 通过容器构建  
+ ```
+docker commit -a 'depu' -m 'nginx' commit_test /depu/commit_test用现有的commit_test容器构建一个镜像，-a(author),-m(commit msg)
+```
+ 2 通过dockerfile构建   
+ 详细请看第四章        
+ 
+### 2.4 docker容器的网络连接
+  当docker用某个镜像创建了一个新容器，该容器拥有自己的网络，ip地址，以及一个用来和宿主机进行通信的桥接网络接口。
++ docker容器的网络基础 (不理解，待完善) 
+  1首先先运行```ifconfig```查看系统的网络设备，可以看到系统中存在一个docker0的网络设备,docker的守护进程就是通过docker0
+  为docker容器提供网络连接的，docker0是linux的虚拟网桥，它的特点是可以设置ip地址，相当于拥有一个隐藏的虚拟网卡
+  ```
+  docker0   Link encap:Ethernet  HWaddr 02:42:45:45:9a:2c (mac地址) 
+            inet addr:172.17.0.1(ip)  Bcast:172.17.255.255  Mask:255.255.0.0(子网掩码)
+            UP BROADCAST MULTICAST  MTU:1500  Metric:1
+            RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+            TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+            collisions:0 txqueuelen:0 
+            RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+  ```
+  2查看网桥
+  ```
+  depu@ubuntu:~$ sudo brctl show
+  bridge name	bridge id		STP enabled	interfaces
+  docker0		8000.024245459a2c	no	
+  ```
+  3运行一个centos，进去查看网络设备，发现docker自动创建了一个eth0的网卡,ip被分配成了 172.17.0.2
+  ```
+  [root@e9030d2c7f3f /]# ifconfig
+  eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+          inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+          ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+          RX packets 4886  bytes 12853230 (12.2 MiB)
+          RX errors 0  dropped 0  overruns 0  frame 0
+          TX packets 3078  bytes 170670 (166.6 KiB)
+          TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+  
+  lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+          inet 127.0.0.1  netmask 255.0.0.0
+          loop  txqueuelen 1000  (Local Loopback)
+          RX packets 0  bytes 0 (0.0 B)
+          RX errors 0  dropped 0  overruns 0  frame 0
+          TX packets 0  bytes 0 (0.0 B)
+          TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+  
+
+  ```
+  4 我们再查看网桥的状态
++ docker容器的互联  
+    1 允许所有容器互联
+    容器间是可以互联的，但是问题的容器每次启动的时候分配的IP都可能不一样,docker提供了另外一种方式就是--link，它是在容器启动时以指定的代号
+        来访问到响应的容器(DOCKER官方文档并不推荐使用link，新建自定义网络，且用hostname来进行互联才是推荐的做法。)
+    ```
+    docker run --link=[CONTAINER_NAME]:[ALIAS] [IMAGE][COMMAND] #  官方不推荐使用
+    ```    
+    2 拒绝容器间互联, 修改守护进程的启动选项
+    ```DOCKER_OPS="--ICC=false"```
+    3 允许特定容器间的连接
+    ```--iptables=true #它的意思是允许将docker容器将配置的添加linux的iptables设置中， iptables是linux中控制网络访问的重要组件```
+
++ docker容器的外部网络的连接                                                                                                                                                 

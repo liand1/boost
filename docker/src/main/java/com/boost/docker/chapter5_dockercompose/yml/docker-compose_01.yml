@@ -1,0 +1,12 @@
+version: '3'
+services:
+  nginx: #容器的名称，自定义
+    image: nginx #镜像，默认是lastest
+    ports: #端口映射
+      - 80:80
+    links: #链接到app容器,这样就不用根据ip地址去进行互联了
+      - app
+    volumes: #目录挂载
+      - "./nginx.conf.d/:etc/nginx.conf.d"
+  app:
+    image depu/app

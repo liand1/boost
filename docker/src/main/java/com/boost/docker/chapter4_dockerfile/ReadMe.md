@@ -20,13 +20,35 @@
 + RUN 容器构建时需要运行的命令  
 + EXPOSE 当前容器对外暴露的端口
 + WORKDIR 指定在创建容器后，终端默认登陆的进来工作目录，一个落脚点，不加的话默认时根目录
+  ```
+  #先指定工作目录
+  WORKDIR /opt/webapp/db
+  RUN bundle install
+  #切换工作目录
+  WORKDIR /opt/webapp
+  ENTRYPOINT ["rackup"]
+  ```
+ 也可以通过`-w`覆盖工作目录 
+```
+docker run -it -w /var/log ubunutu pwd
+```      
++ USER 用来指定该镜像会以什么样的用户去运行，默认是root
 + ENV 用来在构建镜像过程中设置环境变量
 + ADD 与COPY类似，拷贝，但是还会解压缩  比如 ADD centos-7-docker-tar.xz /
 + COPY 拷贝文件和目录到镜像中，将从构建上下文目录中<源路径>的文件/目录复制到新的一层的镜像内的<目标路径>位置  
 + VOLUME 容器数据卷，用于数据保存和持久化工作
 + CMD 指定一个容器启动时要运行的命令，dockerfile中可以有多个CMD指令，但只有最后一个生效，`CMD会被docker run之后的参数替换(详见案例2)`  
-+ ENTRYPOINT 指定一个容器启动时要运行的命令，ENTRYPOINT的目的和CMD一样，都是在指定容器启动程序及参数
-+ ONBUILD 当构建一个被继承的Dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild被触发
++ ENTRYPOINT 指定一个容器启动时要运行的命令，ENTRYPOINT的目的和CMD一样，都是在指定容器启动程序及参数,Docker run命令行中指定  
+  的任何参数都会被当作参数再次传递给ENTRYPOINT指令中指定的指令。
+  ```
+  ENTRYPOINT ["/user/sbin/nginx", "-g","daemon off"] 
+  ```  
+  和下面的相同  
+  ```
+  ENTRYPOINT ["/user/sbin/nginx"]  
+  docker run -it my_tomcat -g "daemon off"
+  ```
++ ONBUILD 给镜像添加触发器，当构建一个被继承的Dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild被触发
 
 下面是hub docker中centos6.8的dockerfile
 ```
@@ -61,6 +83,7 @@ CMD echo "------------success--------------"
 CMD /bin/bash
 ```
 step2 然后开始执行
+>-t选项为新镜像设置了仓库和名称
 ```
 #构建 小数点.其实就是将当前目录设置为上下文路径, 比如要打包的文件都在这个路径中
 depu@ubuntu:/mydocker$ docker build -f /mydocker/dockerfile2 -t mycentos:1.3 . 
@@ -218,4 +241,11 @@ docker run -d p 8888:8080 --name mytomcat9 \
 --privileged=true \
 customtomcat9
 
+```
+
+####4.1.5 构建缓存
+有些时候需要确保构建过程不会使用缓存。比如，如果已经缓存了前面的第三步，即apt-get update，那么docker将不会再次刷新APT包的缓存。这时
+你可能需要取得每个包的最新版本。要想略过缓存功能，可以使用--no-cache标志
+```
+docker build --no-cache -t="home/mydocker" .
 ```
