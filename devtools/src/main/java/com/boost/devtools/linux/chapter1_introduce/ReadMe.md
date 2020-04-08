@@ -32,7 +32,7 @@ linux中，一切皆是文件，包括进程，磁盘等等..
 + ls： list 列出当前工作目录下所有文件/文件夹名称  
 > -l: 表示以`详细`列表的形式进行展示  
 ```
-drwxr-xr-x   2 root root 4096 May 11  2019 media  // drwxr-xr-x第一个字母'd'表示文件类型是一个文件夹directory
+drwxr-xr-x   2 root root 4096 May 11  2019 media  // drwxr-xr-x第一个字母'd'表示文件类型是一个文件夹directory, l表示link
 -rwxr-xr-x   2 root root 4096 May 11  2019 log    // -rwxr-xr-x第一个'-'表示文件类型是一个文件
 ```
 > -a: 显示所有，包括隐藏的文件/文件夹, 隐藏文档一般都是以'.'开头  
@@ -63,6 +63,8 @@ drwxr-xr-x   2 root root 4096 May 11  2019 media  // drwxr-xr-x第一个字母'd
 > ">>": 追加，追加到文件内容的末尾, 文件不存在则自动新建 ls -la >> ls.txt  
 + cat: 直接打开一个文件，可以对文件进行合并，把多个文件合并成一个文件  
 > cat 待合并的文件路径1 待合并的文件路径2 ... > 合并之后的文件路径  
++ su: switch user, 切换用户
++ ln -s origPath desPath: 创建软链接, 给深层的文件定义一个链接，通过这个链接可以直接执行这个命令
 
 ### 1.4 Linux进阶指令
 + df: disk free 查看磁盘空间  

@@ -1,5 +1,5 @@
-### 2.1 vim
 
+### 2.1 vim
 #### 2.1.1 vim三种模式
 + 命令模式(默认进入的模式)
 > 在该模式下是不能对文件进行直接编辑，可以输入快捷键进行一些操作(删除行，复制行，移动过光标，粘贴等等)  
@@ -75,5 +75,77 @@ Vim可以有自己的配置
 ```
 alias cls='clear'
 ```
-
 ### 2.3 Linux 自有服务
+不需要用户独立安装的软件的服务，而是系统安装好之后就可以直接使用的服务(内置)
+#### 2.3.1 运行模式
+也称之为运行级别. 在Linux中存在一个进程：init(initialize, 初始化), PID为1，该进程存在一个对应的配置文件:/etc/inittab
+
+### 2.4 用户管理
+/etc/passwd: 存储用户的关键信息  
+/etc/group: 存储用户组的关键信息  
+/etc/shadow: 存储用户的密码信息  
++ 添加用户  useradd 
+```useradd 选项 用户名 # 创建完成之后会在home文件夹下生成一个同名的家目录
+depu@ubuntu:/home$ ll
+drwxr-xr-x  3 root root 4096 Sep 27  2019 ./
+drwxr-xr-x 24 root root 4096 Apr  7 07:19 ../
+drwxr-xr-x 20 depu depu 4096 Apr  8 07:07 depu/
+```  
+>-g: 指定用户组, 可以是id也可以是组名
+>-G: 指定附加组, 可以是id也可以是组名
+>-u: uid, 用户的标识符， 指定后，系统不会默认分配
+
+创建完用户后，可以通过```cat /etc/passwd```来查看用户名是否创建成功，文件结构如下
+case1: 创建depu用户主组为500，附加组为501
+```
+usermod -g 500 -G 501 depu
+```
+```
+#我们发现每一行被":"分隔成多个字符串，现在解释一下，每一个字符串的含义,以第一行为例
+depu: 创建的新用户的名称
+x: 密码的占位符
+1000: 用户的识别符 uid
+1000: 用户主组id
+ubunut-desktop,,,: 注释, 可以在创建用户的时候用 -c来添加注释
+/home/depu: 用户的家目录
+/bin/bash: 解释器sheel, 等待用户进入系统后,用户输入指令之后，该解释器会收集用户输入的指令，传递给内核处理
+depu:x:1000:1000:ubunut-desktop,,,:/home/depu:/bin/bash
+epmd:x:121:129::/var/run/epmd:/bin/false
+rabbitmq:x:122:130:RabbitMQ messaging server,,,:/var/lib/rabbitmq:/bin/false
+```
++ 修改用户 usermod
+case1: 修改depu用户主组为500，附加组为501
+```
+usermod -g 500 -G 501 depu
+```
+>-g: 指定用户组, 可以是id也可以是组名
+>-G: 指定附加组, 可以是id也可以是组名
+>-u: uid, 用户的标识符， 指定后，系统不会默认分配
+>-l: 修改用户名(小写字母L)
++ 设置密码 
+Linux不允许没有密码的用户登陆到系统，因此开始创建的用户都是锁定状态，需要设置密码才能登陆到计算机
+```
+depu@ubuntu:~$ passwd depu
+Changing password for depu.
+(current) UNIX password: 
+```
++ 删除用户 userdel depu 
+如果该用户还有对应的进程，需要先kill掉
+> -r: 删除用户的用户删除其家目录
+
+### 2.5 用户组管理 
+类似用户管理,这里不做过多解释
+
+### 2.6 网络设置
+centos中网卡的信息放在/etc/sysconfig/network-scripts下面  
+重启网卡  
++ service network restart  
++ /etc/init.d/network restart  
++ ifdown eth0, 停止eth0这个网卡
++ ifup eth0, 启动eth0这个网卡
+
+### 2.7 SSH(secure shell，安全外壳协议)
+配置文件目录在这cat /etc/ssh/ssh_config
+
+
+
