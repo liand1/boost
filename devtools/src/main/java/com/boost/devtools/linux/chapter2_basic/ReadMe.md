@@ -146,6 +146,24 @@ centos中网卡的信息放在/etc/sysconfig/network-scripts下面
 
 ### 2.7 SSH(secure shell，安全外壳协议)
 配置文件目录在这cat /etc/ssh/ssh_config
+### 2.8 修改文件权限
++ chmod: change mod, r = 4, w=2, x=1,-=0, `下面的777中的每个数字分别代表所属用户权限，所属组权限，其他用户权限`
+`drwxr-xr-x 文件的权限， 属主：rwx=7, 用户组r-x=5, 其他用户r-x=5`
+> chmod 777 /etc/log.log  
+> chmod -R 777 /dev/env/: Recursion,目录下的所有文件或子目录设置为777权限  
+> chmod u+rw /etc/log.log: 给文件添加属主读写权限  
+> chmod g+w /etc/log.log: 给文件添加属组写权限  
+> chmod o+x /etc/log.log: 给文件添加其它执行权限 
+> chmod a-w /etc/log.log: 给文件属主，属组和其他去掉写权限  
+> chmod -w /etc/log.log: 给文件属主，属组和其他去掉写权限,等同于chmod a-w /etc/log.log  
+> chmod o=x /etc/log.log: 给文件添加其它的权限设置为只有执行权限  
+> chmod u=x,g=ewx,o=w /etc/log.log  
+> chmod ugo-w /etc/log.log  
 
++ chown: change file owner and group
+> chown root a.sh: 改变用户属主  
+> chown .root a.sh: 改变用户属主,属组, 等同于chgrp root a.sh  
+> chown root.root a.sh: 改变用户属主,属组  
+> chown -R root.root /dev/: 改变用户属主,属组  
 
-
++ chgrp: change file group
