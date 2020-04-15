@@ -22,6 +22,7 @@ public class Case2 {
         useLambda(inventory);
     }
 
+    // 使用lambda
     private static void useLambda (List<Apple> inventory) {
         List<Apple> result =
                 filterApples(inventory, (Apple apple) -> "red".equals(apple.getColor()));

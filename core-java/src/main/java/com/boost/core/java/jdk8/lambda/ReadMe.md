@@ -10,3 +10,7 @@ System.out.println(a.getWeight())       Consumer<Apple>
 a1.getWeight().compareTo(a2.getWeight()) Comparator<Apple>或
 BiFunction<Apple, Apple, Integer>
 或 ToIntBiFunction<Apple, Apple>   
+
+### 类型推断
+List<String> list = new ArrayList<>();// diamond
+### 

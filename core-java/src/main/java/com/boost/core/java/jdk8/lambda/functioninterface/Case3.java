@@ -24,6 +24,9 @@ public class Case3 {
 @FunctionalInterface
 interface GreetingService {
     void sayMessage(String message);
+
+    // 重写Object对象的方法是不会影响到的
+    String toString();
 }
 
 

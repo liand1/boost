@@ -8,10 +8,10 @@ Lambda
 或（请注意语句的花括号）
 (parameters) -> { statements; } 
 
-Case1: 为什么使用lambda
-case2: 使用lambda
-case3: FunctionalInterface
-case4: 延迟执行
+Case1: 为什么使用lambda  
+case2: 使用lambda  
+case3: FunctionalInterface  
+case4: 延迟执行  
 
 
 和CollectionAPI相比，StreamAPI处理数据的方式非常不同.用集合的话，你得

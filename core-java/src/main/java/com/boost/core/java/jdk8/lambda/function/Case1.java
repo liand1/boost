@@ -14,11 +14,15 @@ import java.util.List;
 public class Case1 {
 
     public static void main(String[] args) {
-        List<Integer> result = map(Arrays.asList("lambda", "in", "action"), (s) -> s.length());
+        // Function<String, Integer>泛型的第一个String代表的是调用方法的对象类型，第二个就是返回结果的类型
+        Function<String, Integer> function = String::length;// 方法引用
+//        Function<String, Integer> function = (s) -> s.length();
+        List<Integer> result = map(Arrays.asList("lambda", "in", "action"), function);
 
         System.out.println(result);
     }
 
+    // 第一个参数是值，第二个参数就是行为
     public static <T, R> List<R> map(List<T> list, Function<T, R> f) {
         List<R> result = new ArrayList<>();
         for (T s : list) {
@@ -26,6 +30,7 @@ public class Case1 {
         }
         return result;
     }
+
 }
 
 @FunctionalInterface
