@@ -31,7 +31,14 @@ public class Case1 {
         Optional<Car> optCar = Optional.ofNullable(car);
     }
 
+    public static void case4() {
+        Car car = new Car();
+        Optional<Car> optCar = Optional.ofNullable(car);
+        optCar.ifPresent(c -> System.out.println(c.getInsurance()));
+    }
+
     public static void main(String[] args) {
-        case1();
+//        case1();
+    case4();
     }
 }

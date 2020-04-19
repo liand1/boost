@@ -39,7 +39,7 @@ public class Case2 {
      */
     public static void case3() {
         Person person = new Person();
-        Optional<Person> optPerson = Optional.of(person);
+        Optional<Person> optPerson = Optional.ofNullable(person);
 
         String name = optPerson.flatMap(Person::getCar)
                 .flatMap(Car::getInsurance)

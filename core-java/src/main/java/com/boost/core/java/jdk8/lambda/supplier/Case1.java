@@ -1,11 +1,9 @@
 package com.boost.core.java.jdk8.lambda.supplier;
 
-import lombok.val;
-
 import java.util.function.Supplier;
 
 /**
- * Supplier为生产型接口
+ * Supplier为生产型接口, 不接受参数，同时返回一个结果
  */
 public class Case1 {
 
@@ -17,7 +15,6 @@ public class Case1 {
         String s = getString(() -> "case1");
 
         System.out.println(s);
-
     }
 
 }
