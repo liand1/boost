@@ -23,6 +23,10 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>1.21</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
 
