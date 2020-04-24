@@ -9,3 +9,23 @@
 case1: minBy/summingInt/joining
 case2: groupingBy collectingAndThen 分组
 case3: 分区
+
+
+源码分析
+阅读Collector源码
+包含四个
+```
+ <li>creation of a new result container ({@link #supplier()})</li>
+ <li>incorporating a new data element into a result container ({@link #accumulator()})</li>
+ <li>combining two result containers into one ({@link #combiner()})</li> 用在并行流的情况下
+ <li>performing an optional final transform on the container ({@link #finisher()})</li>
+```
+```
+/**
+* T是流中每一个元素的类型
+* A每一次汇聚操作结果的类型
+* R是最终汇聚操作结果的类型
+*/
+public interface Collector<T, A, R> {
+```
+ 

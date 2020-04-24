@@ -81,15 +81,12 @@ public class Case1 {
         System.out.println(result + ",case4 time is " + (end - start) / 1000);
     }
 
-    public static void case6() {
-
-    }
 
     public static void main(String[] args) {
 //        case1();//17s
 //        case2();//20s
 //        case3();//7s
 //        case4();//报OutOfMemoryError
-        case5();//1s
+//        case5();//1s
     }
 }

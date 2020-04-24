@@ -50,10 +50,5 @@ public class Case3 {
                                 Optional::get)));
     }
 
-    /**
-     * 将数字分为质数和非质数
-     */
-    public static void case4() {
 
-    }
 }
