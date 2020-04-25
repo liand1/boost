@@ -17,6 +17,7 @@
         <module>spring-mongo</module>
         <module>docker</module>
         <module>devtools</module>
+        <module>distributed</module>
     </modules>
 
     <parent>

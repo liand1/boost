@@ -9,6 +9,7 @@
 case1: minBy/summingInt/joining
 case2: groupingBy collectingAndThen 分组
 case3: 分区
+case4: Comparator
 
 
 源码分析
