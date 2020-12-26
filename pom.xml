@@ -18,6 +18,7 @@
         <module>docker</module>
         <module>devtools</module>
         <module>distributed</module>
+        <module>data-structure</module>
     </modules>
 
     <parent>
