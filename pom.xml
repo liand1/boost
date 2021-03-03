@@ -19,6 +19,7 @@
         <module>devtools</module>
         <module>distributed</module>
         <module>data-structure</module>
+        <module>others</module>
     </modules>
 
     <parent>
