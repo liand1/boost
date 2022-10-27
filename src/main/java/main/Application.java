@@ -1,5 +1,7 @@
 package main;
 
+
+
 public class Application {
     public static void main(String[] args) {
         trimStr("，行为参数化是一个很有用的模式，它能够轻松地适应不断变化的需求。这\n" +
